@@ -4,6 +4,8 @@
 
 This REST API, built with Spring Boot, provides a comprehensive backend solution for an e-commerce platform. It offers endpoints for managing user authentication, product catalogs, order processing, shipping, and customer reviews.
 
+<img src="SwaggerUI-Screenshot.png" alt="Ecommerce API" width="600">
+
 ## 🚀 Key Features
 
 * **User Authentication:** Secure user registration and login with JWT-based authentication.
