@@ -19,13 +19,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/images")
-@Tag(name = "6. Product Images", description = "APIs for Users Product Images")
+@Tag(name = "Product Images", description = "APIs for Users Product Images")
 public class ProductImageController {
 	
 	@Autowired
 	private ProductImageService productImageService;
 	
-	@Operation(summary = "1. Get Images", description = "Get images for a product")
+	@Operation(summary = "Get Images", description = "Get images for a product")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/get/{id}")
     public ApiResponse<List<ProductImageGetDTO>> getImages(@PathVariable(name="id") Integer productId) {
@@ -40,7 +40,7 @@ public class ProductImageController {
 //        return new ApiResponse<>(true, "Data retreived successfully", null);
 //    }
 	
-	@Operation(summary = "2. Delete Images", description = "Delete images for a product by image name")
+	@Operation(summary = "Delete Images", description = "Delete images for a product by image name")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/delete")
     public ApiResponse<String> deleteImages(@RequestParam("image") String imageName) {

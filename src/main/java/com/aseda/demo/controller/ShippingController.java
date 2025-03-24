@@ -23,34 +23,34 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/shipping")
-@Tag(name = "4. Shipping Adresses", description = "APIs for Users Shipping Address")
+@Tag(name = "Shipping Adresses", description = "APIs for Users Shipping Address")
 public class ShippingController {
 
 	@Autowired
 	private ShippingService shippingService;
 	
-	@Operation(summary = "1. Get all Shipping Adresses", description = "Get all user shipping addresses")
+	@Operation(summary = "Get all Shipping Adresses", description = "Get all user shipping addresses")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/get")
     public ApiResponse<List<ShippingGetDTO>> getShippings() {
         return new ApiResponse<>(true, "Data retreived successfully", shippingService.getAllShipping());
     }
 	
-	@Operation(summary = "2. Get a Shipping Adress", description = "Get user shipping address")
+	@Operation(summary = "Get a Shipping Adress", description = "Get user shipping address")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/single/{id}")
     public ApiResponse<ShippingGetDTO> getShipping(@PathVariable(name="id") Integer shippingId) {
         return new ApiResponse<>(true, "Data retreived successfully", shippingService.getShipping(shippingId));
     }
 	
-	@Operation(summary = "3. Create Shipping", description = "Create shipping address by user")
+	@Operation(summary = "Create Shipping", description = "Create shipping address by user")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public ApiResponse<ShippingGetDTO> createCategories(@Valid @RequestBody ShippingCreateDTO createDTO) {
         return new ApiResponse<>(true, "Shipping address created successfully", shippingService.createShipping(createDTO));
     }
 	
-	@Operation(summary = "4. Update Shipping", description = "Update a shipping address by user")
+	@Operation(summary = "Update Shipping", description = "Update a shipping address by user")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/update/{id}")
     public ApiResponse<String> updateCategories(@PathVariable(name = "id") int shippingId, @Valid @RequestBody ShippingUpdateDTO updateDTO) {
@@ -58,7 +58,7 @@ public class ShippingController {
 		return new ApiResponse<>(true, "Shipping address updated successfully", null);
     }
 	
-	@Operation(summary = "5. Delete Shipping", description = "Deactivate a shipping address by Id")
+	@Operation(summary = "Delete Shipping", description = "Deactivate a shipping address by Id")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/deactivate/{id}")
 	public ApiResponse<String> deleteShipping(@PathVariable(name = "id") int shippingId) {

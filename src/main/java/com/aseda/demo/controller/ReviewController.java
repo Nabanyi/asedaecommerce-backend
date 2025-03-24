@@ -22,20 +22,20 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/reviews")
-@Tag(name = "7. Reviews", description = "APIs for Reviews")
+@Tag(name = "Reviews", description = "APIs for Reviews")
 public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
 	
-	@Operation(summary = "1. Get Reviews", description = "Get all reviews for a product")
+	@Operation(summary = "Get Reviews", description = "Get all reviews for a product")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/get/{productID}")
 	public ApiResponse<List<Review>> getProductReviews(@PathVariable(name="productID") Integer productId) {
 		return new ApiResponse<>(true, "Data retreived successfully", reviewService.getAllReviews(productId));
 	}
 	
-	@Operation(summary = "2. Create Reviews", description = "Create reviews for a product")
+	@Operation(summary = "Create Reviews", description = "Create reviews for a product")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
 	public ApiResponse<Review> createReviews(@Valid @RequestBody ReviewCreateDTO createDTO) {

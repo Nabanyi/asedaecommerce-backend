@@ -21,26 +21,26 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/orders")
-@Tag(name = "8. Orders", description = "APIs for Orders")
+@Tag(name = "Orders", description = "APIs for Orders")
 public class OrderController {
 	@Autowired
 	private OrdersService ordersService;
 	
-	@Operation(summary = "1. Get Orders made", description = "Get all orders made")
+	@Operation(summary = "Get Orders made", description = "Get all orders made")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/orders-placed")
     public ApiResponse<List<OrderGetDTO>> getOrdersPlaced() {
         return new ApiResponse<>(true, "Data retreived successfully", ordersService.getOrdersPlaced());
     }
 	
-	@Operation(summary = "2. Get Orders received", description = "Get all orders received")
+	@Operation(summary = "Get Orders received", description = "Get all orders received")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/orders-received")
     public ApiResponse<List<OrderGetDTO>> getOrdersReceived() {
         return new ApiResponse<>(true, "Data retreived successfully", ordersService.getOrdersReceived());
     }
 	
-	@Operation(summary = "3. Create Orders", description = "Create orders")
+	@Operation(summary = "Create Orders", description = "Create orders")
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create-order")
 	public ApiResponse<String> createOrder(@Valid @RequestBody CreateOrderRequest request) {

@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "1. Authentication", description = "APIs for user authentication")
+@Tag(name = "Authentication", description = "APIs for user authentication")
 public class AuthController {
 
 	@Autowired
@@ -34,13 +34,14 @@ public class AuthController {
     }
 	
 	//	Refresh Access Token
+	@Operation(summary = "Access Token Refresh", description = "Refresh Access Token")
 	@PostMapping("/refresh")
     public ApiResponse<RefreshTokenDTO> refresh(@RequestBody RefreshTokenDTO refreshToken) {
         return new ApiResponse<RefreshTokenDTO> (true, "Refresh Successful", authService.refreshAccessToken(refreshToken) );
     }
     
     // Register End points
-	@Operation(summary = "Register", description = "Registers a new user and returns a success message")
+	@Operation(summary = "Register", description = "Registers a new user")
     @PostMapping("/register")
     public ApiResponse<String> register(@Valid @RequestBody RegisterRequest request) {
     	authService.register(request);

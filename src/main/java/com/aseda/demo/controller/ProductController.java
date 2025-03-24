@@ -30,12 +30,12 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/product")
-@Tag(name = "5. Product Items", description = "APIs for Users Product Items")
+@Tag(name = "Product Items", description = "APIs for Users Product Items")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@Operation(summary = "1. Get all Items", description = "Get all Ads")
+	@Operation(summary = "Get all Items", description = "Get all Ads")
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/get")
     public ApiResponse<Page<ProductGetDTO>> getProducts(@RequestBody @Valid ProductGetRequest request) {
@@ -51,7 +51,7 @@ public class ProductController {
 	    return new ApiResponse<>(true, "Data retrieved successfully", products);
     }
 	
-	@Operation(summary = "1. Get all User Items", description = "Get all user product items")
+	@Operation(summary = "Get all User Items", description = "Get all user product items")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user-ads")
     public ApiResponse<List<ProductGetDTO>> getUserProducts() {
@@ -59,28 +59,28 @@ public class ProductController {
 	    return new ApiResponse<>(true, "Data retrieved successfully", products);
     }
 	
-	@Operation(summary = "2. Get a Product", description = "Get a single product")
+	@Operation(summary = "Get a Product", description = "Get a single product")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/single/{id}")
     public ApiResponse<ProductDetailsDTO> getproduct(@PathVariable(name="id") Integer productId) {
         return new ApiResponse<>(true, "Data retreived successfully", productService.getProduct(productId));
     }
 	
-	@Operation(summary = "3. Create Product", description = "Create product by user")
+	@Operation(summary = "Create Product", description = "Create product by user")
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/create", consumes = "multipart/form-data")
     public ApiResponse<ProductGetDTO> createproduct(@Valid ProductCreateDTO createDTO) {
         return new ApiResponse<>(true, "Product created successfully", productService.createProduct(createDTO));
     }
 	
-	@Operation(summary = "4. Update Product", description = "Update a Product by user")
+	@Operation(summary = "Update Product", description = "Update a Product by user")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping(value="/update/{id}", consumes="multipart/form-data")
     public ApiResponse<ProductGetDTO> updateProduct(@PathVariable(name = "id") int productId, @Valid ProductUpdateDTO updateDTO) {
 		return new ApiResponse<>(true, "Product details updated successfully", productService.updateProduct(productId, updateDTO));
     }
 	
-	@Operation(summary = "5. Delete Product", description = "Deactivate a Product Item by Id")
+	@Operation(summary = "Delete Product", description = "Deactivate a Product Item by Id")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/deactivate/{id}")
 	public ApiResponse<String> deleteProduct(@PathVariable(name = "id") int productId) {
@@ -88,7 +88,7 @@ public class ProductController {
 		return new ApiResponse<>(true, "Product deactivated successfully", null);
 	}
 	
-	@Operation(summary = "6. Similar Product", description = "Get similar products for a brand and category")
+	@Operation(summary = "Similar Product", description = "Get similar products for a brand and category")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/similar-products/{brandId}/{categoryId}")
 	public ApiResponse<List<ProductGetDTO>> getSimilarProducts(@PathVariable(name = "brandId") int brand, @PathVariable(name = "categoryId") int category) {

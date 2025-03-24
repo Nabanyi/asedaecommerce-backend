@@ -23,41 +23,41 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/brand")
-@Tag(name = "3. Product Brand", description = "APIs for Product Brands")
+@Tag(name = "Product Brand", description = "APIs for Product Brands")
 public class BrandController {
 
 	@Autowired
 	private BrandService brandService;
 	
-	@Operation(summary = "1. Get All Brands", description = "Get all brands by user")
+	@Operation(summary = "Get All Brands", description = "Get all brands")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/get")
     public ApiResponse<List<BrandGetDTO>> getBrands() {
         return new ApiResponse<>(true, "Data retreived successfully", brandService.getUserBrands());
     }
 	
-	@Operation(summary = "2. Get a Brand", description = "Get a single brand by user")
+	@Operation(summary = "Get a Brand", description = "Get a single brand")
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/single/{id}")
     public ApiResponse<BrandGetDTO> getBrand(@PathVariable(name = "id") int productId) {
         return new ApiResponse<>(true, "Brand retrieved successfully", brandService.getUserBrand(productId));
     }
 	
-	@Operation(summary = "3. Create Brand", description = "Create a brand by user")
+	@Operation(summary = "Create Brand", description = "Create a brand")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public ApiResponse<BrandGetDTO> createBrands(@Valid @RequestBody BrandCreateDTO brandDTO) {
         return new ApiResponse<>(true, "Brand created successfully", brandService.createBrand(brandDTO));
     }
 	
-	@Operation(summary = "4. Update Brand", description = "Update a brand by user")
+	@Operation(summary = "Update Brand", description = "Update a brand")
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/update/{id}")
     public ApiResponse<BrandGetDTO> updateBrand(@PathVariable(name = "id") int brandId, @Valid @RequestBody BrandUpdateDTO brandDTO) {
         return new ApiResponse<>(true, "Brand updated successfully", brandService.updateBrand(brandId, brandDTO));
     }
 	
-	@Operation(summary = "5. Delete Category", description = "Deactivate a category by Id")
+	@Operation(summary = "Deactivate Brand", description = "Deactivate a brand by Id")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/deactivate/{id}")
 	public ApiResponse<BrandGetDTO> deleteCategory(@PathVariable(name = "id") int brandId) {
